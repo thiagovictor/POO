@@ -15,6 +15,16 @@ for ($i = 0; $i < 10; $i++) {
             ->setEmail("Cliente{$i}@empresa.com.br");
     $lista[] = $cliente;
 }
+
+if(isset($_GET["order"])){
+    arsort ($lista);
+    $href = 'index.php';
+    $img = "img/DESC.png";
+}else{
+    asort($lista);
+    $href = 'index.php?order=DESC';
+    $img = "img/ASC.png";
+}
 $_SESSION["lista"] = serialize($lista);
 ?>
 
@@ -86,7 +96,7 @@ $_SESSION["lista"] = serialize($lista);
         <table class="table">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th><a href="<?php echo $href; ?>" >#&nbsp;<img src="<?php echo $img; ?>"></a></th>
                     <th>Nome</th>
                     <th>Email</th>
                     <th>Celular</th>
@@ -95,7 +105,7 @@ $_SESSION["lista"] = serialize($lista);
             <tbody>
                 <?php foreach ($lista as $user): ?>
                     <tr>
-                        <th></th>
+                        <th><?php echo $user->getId(); ?></th>
                         <th><a href='#' class='edit-record' data-id='<?php echo $user->getId(); ?>'><?php echo $user->getNome(); ?></a></th>
                         <th><?php echo $user->getEmail(); ?></th>
                         <th><?php echo $user->getCelular(); ?></th>
