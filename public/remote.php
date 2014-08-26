@@ -1,5 +1,8 @@
 <?php session_start(); ?>
 <?php require_once '../classes/Cliente.php'; ?>
+<?php require_once '../classes/PessoaFisica.php'; ?>
+<?php require_once '../classes/PessoaJuridica.php'; ?>
+
 <?php $lista = unserialize($_SESSION["lista"]); ?>
 
 <?php if (isset($_POST["id"])): ?>
@@ -11,14 +14,25 @@
                     <th>ID</th>
                     <th>&nbsp;&nbsp;<?php echo $user->getNome(); ?></th>
                 </tr>
+                
+                <?php if($user instanceof PessoaFisica): ?>
                 <tr>
                     <th>Cpf</th>
                     <th>&nbsp;&nbsp;<?php echo $user->getCpf(); ?></th>
                 </tr>
+                <?php else:?>
+                <tr>
+                    <th>Cnpj</th>
+                    <th>&nbsp;&nbsp;<?php echo $user->getCnpj(); ?></th>
+                </tr>
+                <?php endif;?>
+                
+                <?php if($user instanceof PessoaFisica): ?>
                 <tr>
                     <th>Sexo</th>
                     <th>&nbsp;&nbsp;<?php echo $user->getSexo(); ?></th>
-                </tr>
+                </tr>          
+                <?php endif;?>
                 <tr>
                     <th>Endereço</th>
                     <th>&nbsp;&nbsp;<?php echo $user->getEndereço(); ?></th>
@@ -35,6 +49,16 @@
                     <th>Telefone</th>
                     <th>&nbsp;&nbsp;<?php echo $user->getTelefone(); ?></th>
                 </tr>
+                <tr>
+                    <th>Importância</th>
+                    <th>&nbsp;&nbsp;<?php echo $user->getImportancia(); ?></th>
+                </tr>
+                <?php if ($user instanceof CobrancaInterface):?>
+                <tr>
+                    <th>End. Cobrança</th>
+                    <th>&nbsp;&nbsp;<?php echo $user->getEnderecoCobranca(); ?></th>
+                </tr>
+                <?php endif;?>
             </table>
         <?php endif; ?>
     <?php endif; ?>

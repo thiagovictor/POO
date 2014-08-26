@@ -1,30 +1,20 @@
 <?php
 
-class Cliente {
+abstract class Cliente {
+
     protected $id;
     protected $nome;
-    protected $cpf;
-    protected $sexo;
     protected $telefone;
     protected $celular;
     protected $endereco;
     protected $email;
-    
-    public function __construct($nome, $cpf) {
+
+    public function __construct($nome) {
         $this->nome = $nome;
-        $this->cpf = $cpf;
     }
-    
+
     public function getNome() {
         return $this->nome;
-    }
-
-    public function getCpf() {
-        return $this->cpf;
-    }
-
-    public function getSexo() {
-        return $this->sexo;
     }
 
     public function getTelefone() {
@@ -48,16 +38,6 @@ class Cliente {
         return $this;
     }
 
-    public function setCpf($cpf) {
-        $this->cpf = $cpf;
-        return $this;
-    }
-
-    public function setSexo($sexo) {
-        $this->sexo = $sexo;
-        return $this;
-    }
-
     public function setTelefone($telefone) {
         $this->telefone = $telefone;
         return $this;
@@ -77,6 +57,7 @@ class Cliente {
         $this->email = $email;
         return $this;
     }
+
     public function getId() {
         return $this->id;
     }

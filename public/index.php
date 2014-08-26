@@ -1,17 +1,32 @@
 <?php
 require_once '../classes/Cliente.php';
+require_once '../classes/PessoaFisica.php';
+require_once '../classes/PessoaJuridica.php';
+
 $lista = array();
 /*
  * Criando objetos de teste automaticamente.
  */
 session_start();
-for ($i = 0; $i < 10; $i++) {
-    $cliente = new Cliente("Cliente" . $i, "5487124354" . $i);
+for ($i = 0; $i < 6; $i++) {
+    $cliente = new PessoaFisica("PessoaFisica" . $i, "5487124354" . $i);
     $cliente->setCelular("8755-219" . $i)
             ->setTelefone("3472-253{$i}")
             ->setEndereço("Rua passa vinte n: " . $i)
             ->setId($i)
             ->setSexo("M")
+            ->setImportancia($i)
+            ->setEmail("Cliente{$i}@empresa.com.br");
+    $lista[] = $cliente;
+}
+for ($i = 6; $i < 10; $i++) {
+    $cliente = new PessoaJuridica("PessoaJuridica" . $i, "5487124354" . $i);
+    $cliente->setCelular("8755-219" . $i)
+            ->setTelefone("3472-253{$i}")
+            ->setEndereço("Rua passa vinte n: " . $i)
+            ->setImportancia($i)
+            ->setEnderecoCobranca("end Cobrança nº ".$i)
+            ->setId($i)
             ->setEmail("Cliente{$i}@empresa.com.br");
     $lista[] = $cliente;
 }
@@ -98,6 +113,7 @@ $_SESSION["lista"] = serialize($lista);
                 <tr>
                     <th><a href="<?php echo $href; ?>" >#&nbsp;<img src="<?php echo $img; ?>"></a></th>
                     <th>Nome</th>
+                    <th>Tipo</th>
                     <th>Email</th>
                     <th>Celular</th>
                 </tr>
@@ -107,6 +123,7 @@ $_SESSION["lista"] = serialize($lista);
                     <tr>
                         <th><?php echo $user->getId(); ?></th>
                         <th><a href='#' class='edit-record' data-id='<?php echo $user->getId(); ?>'><?php echo $user->getNome(); ?></a></th>
+                        <th><?php if($user instanceof PessoaFisica){echo "Física";}else{echo "Jurídica";}?></th>
                         <th><?php echo $user->getEmail(); ?></th>
                         <th><?php echo $user->getCelular(); ?></th>
                     </tr>
