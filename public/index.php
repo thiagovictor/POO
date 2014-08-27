@@ -1,15 +1,17 @@
-<?php
+<?php chdir(dirname(__DIR__)); ?>
+<?php require 'autoloader.php'; ?>
+<?php session_start();?>
+<?php use POO\Cliente\PessoaFisica,POO\Cliente\PessoaJuridica;?>
 
-require_once '../autoloader.php';
-
-use POO\Cliente\PessoaFisica,
-    POO\Cliente\PessoaJuridica;
+<?php if (isset($_POST["id"])): ?>
+    <?php include 'modal/conteudoModal.php';?>
+<?php else: 
 
 $lista = array();
 /*
  * Criando objetos de teste automaticamente.
  */
-session_start();
+
 for ($i = 0; $i < 6; $i++) {
     $cliente = new PessoaFisica("PessoaFisica" . $i, "5487124354" . $i);
     $cliente->setCelular("8755-219" . $i)
@@ -63,7 +65,7 @@ $_SESSION["lista"] = serialize($lista);
                     $(".modal-body").addClass('loader');
                     $("#myModal").modal('show');
 
-                    $.post('remote.php',
+                    $.post('index.php',
                             {id: $(this).attr('data-id')},
                     function(html) {
                         $(".modal-body").removeClass('loader');
@@ -134,3 +136,4 @@ $_SESSION["lista"] = serialize($lista);
         </table>
     </body>
 </html>
+<?php endif;

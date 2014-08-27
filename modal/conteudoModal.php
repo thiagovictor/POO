@@ -1,15 +1,4 @@
-<?php 
-    require_once '../autoloader.php';
-
-    session_start(); 
-    use POO\Cliente\PessoaFisica,
-        POO\Interfaces\CobrancaInterface;  
-?>
-
-
 <?php $lista = unserialize($_SESSION["lista"]); ?>
-
-<?php if (isset($_POST["id"])): ?>
     <?php if (!empty($_POST["id"]) or $_POST["id"] == 0): ?>
         <?php if (array_key_exists($_POST["id"], $lista)): ?>
             <?php $user = $lista[$_POST["id"]]; ?>
@@ -19,7 +8,7 @@
                     <th>&nbsp;&nbsp;<?php echo $user->getNome(); ?></th>
                 </tr>
                 
-                <?php if($user instanceof PessoaFisica): ?>
+                <?php if($user instanceof \POO\Cliente\PessoaFisica): ?>
                 <tr>
                     <th>Cpf</th>
                     <th>&nbsp;&nbsp;<?php echo $user->getCpf(); ?></th>
@@ -31,7 +20,7 @@
                 </tr>
                 <?php endif;?>
                 
-                <?php if($user instanceof PessoaFisica): ?>
+                <?php if($user instanceof \POO\Cliente\PessoaFisica): ?>
                 <tr>
                     <th>Sexo</th>
                     <th>&nbsp;&nbsp;<?php echo $user->getSexo(); ?></th>
@@ -57,7 +46,7 @@
                     <th>Importância</th>
                     <th>&nbsp;&nbsp;<?php echo $user->getImportancia(); ?></th>
                 </tr>
-                <?php if ($user instanceof CobrancaInterface):?>
+                <?php if ($user instanceof \POO\Interfaces\CobrancaInterface):?>
                 <tr>
                     <th>End. Cobrança</th>
                     <th>&nbsp;&nbsp;<?php echo $user->getEnderecoCobranca(); ?></th>
@@ -66,8 +55,3 @@
             </table>
         <?php endif; ?>
     <?php endif; ?>
-    <?php
- endif; 
-
-
-
