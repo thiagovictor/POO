@@ -1,7 +1,11 @@
-<?php session_start(); ?>
-<?php require_once '../classes/Cliente.php'; ?>
-<?php require_once '../classes/PessoaFisica.php'; ?>
-<?php require_once '../classes/PessoaJuridica.php'; ?>
+<?php 
+    require_once '../autoloader.php';
+
+    session_start(); 
+    use POO\Cliente\PessoaFisica,
+        POO\Interfaces\CobrancaInterface;  
+?>
+
 
 <?php $lista = unserialize($_SESSION["lista"]); ?>
 

@@ -1,7 +1,9 @@
 <?php
-require_once 'Cliente.php';
-require_once 'GrauInterface.php';
-require_once 'CobrancaInterface.php';
+
+namespace POO\Cliente;
+
+use POO\Interfaces\GrauInterface,
+    POO\Interfaces\CobrancaInterface;
 
 class PessoaJuridica extends Cliente implements GrauInterface,  CobrancaInterface{
     protected $cnpj;

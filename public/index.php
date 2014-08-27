@@ -1,7 +1,9 @@
 <?php
-require_once '../classes/Cliente.php';
-require_once '../classes/PessoaFisica.php';
-require_once '../classes/PessoaJuridica.php';
+
+require_once '../autoloader.php';
+
+use POO\Cliente\PessoaFisica,
+    POO\Cliente\PessoaJuridica;
 
 $lista = array();
 /*

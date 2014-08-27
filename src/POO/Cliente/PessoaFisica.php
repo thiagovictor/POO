@@ -1,6 +1,8 @@
 <?php
-require_once 'Cliente.php';
-require_once 'GrauInterface.php';
+
+namespace POO\Cliente;
+
+use POO\Interfaces\GrauInterface;
 
 class PessoaFisica extends Cliente implements GrauInterface{
     protected $cpf;

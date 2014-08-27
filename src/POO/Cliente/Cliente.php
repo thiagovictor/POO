@@ -1,5 +1,7 @@
 <?php
 
+namespace POO\Cliente;
+
 abstract class Cliente {
 
     protected $id;
